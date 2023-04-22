@@ -2,6 +2,10 @@
 
 Trello CLI
 
+<p align="center">
+  <img width="600" src="casts/usage.gif">
+</p>
+
 ## Installation
 
 Build or download the trelldo binary to one of your bin paths. Trello
