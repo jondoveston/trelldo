@@ -3,7 +3,7 @@ module github.com/jondoveston/trelldo
 go 1.18
 
 require (
-	github.com/adlio/trello v1.9.0
+	github.com/adlio/trello v1.10.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/viper v1.11.0
