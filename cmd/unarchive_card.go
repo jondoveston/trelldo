@@ -23,15 +23,15 @@ var unarchiveCardCmd = &cobra.Command{
 		if Head {
 			card, err = getHeadCard()
 		} else if Tail {
-      card, err = getTailCard()
-    } else {
+			card, err = getTailCard()
+		} else {
 			card, err = getCard()
 		}
 		if err != nil {
 			er(err)
 		}
 
-    viper.Set("card", card.ID)
+		viper.Set("card", card.ID)
 		err = card.Unarchive()
 		if err != nil {
 			er(err)

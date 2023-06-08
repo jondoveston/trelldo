@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/spf13/viper"
 	"github.com/jondoveston/trelldo/cmd"
+	"github.com/spf13/viper"
 )
 
 var (
@@ -15,8 +15,8 @@ var (
 func main() {
 	cmd.Version = version
 	cmd.Commit = commit
-  cmd.Date = date
-  cmd.BuiltBy = builtBy
+	cmd.Date = date
+	cmd.BuiltBy = builtBy
 
 	_ = cmd.Execute()
 	_ = viper.WriteConfig()

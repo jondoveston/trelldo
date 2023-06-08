@@ -23,14 +23,14 @@ var getCardCmd = &cobra.Command{
 		if Head {
 			card, err = getHeadCard()
 		} else if Tail {
-      card, err = getTailCard()
-    } else {
+			card, err = getTailCard()
+		} else {
 			card, err = getCard()
 		}
 		if err != nil {
 			er(err)
 		}
-    viper.Set("card", card.ID)
+		viper.Set("card", card.ID)
 		fmt.Printf("%v: %v: %v\n", card.ID, card.Name, card.Desc)
 	},
 }

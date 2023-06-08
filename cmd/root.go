@@ -17,7 +17,7 @@ var (
 	Head    bool
 	Tail    bool
 
-  Version string
+	Version string
 	Commit  string
 	Date    string
 	BuiltBy string
@@ -40,7 +40,7 @@ func init() {
 	rootCmd.PersistentFlags().StringP("board", "b", "", "board name")
 	rootCmd.PersistentFlags().StringP("list", "l", "", "list name")
 	rootCmd.PersistentFlags().StringP("card", "c", "", "card id")
-  _ = viper.BindPFlag("board", rootCmd.PersistentFlags().Lookup("board"))
+	_ = viper.BindPFlag("board", rootCmd.PersistentFlags().Lookup("board"))
 	_ = viper.BindPFlag("list", rootCmd.PersistentFlags().Lookup("list"))
 	_ = viper.BindPFlag("card", rootCmd.PersistentFlags().Lookup("card"))
 }
@@ -185,7 +185,7 @@ func getTailCard() (card *trello.Card, err error) {
 	if len(cards) == 0 {
 		return nil, errors.New("Card not found")
 	}
-  card = cards[len(cards)-1]
+	card = cards[len(cards)-1]
 	return card, nil
 }
 

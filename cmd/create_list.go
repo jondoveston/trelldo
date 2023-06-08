@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"fmt"
-  "strings"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"strings"
 )
 
 func init() {
@@ -21,7 +21,7 @@ var createListCmd = &cobra.Command{
 		if err != nil {
 			er(err)
 		}
-    viper.Set("list", list.Name)
+		viper.Set("list", list.Name)
 		fmt.Printf("Created list %v\n", list.Name)
 	},
 }

@@ -25,7 +25,7 @@ var createCardCmd = &cobra.Command{
 		if err != nil {
 			er(err)
 		}
-    viper.Set("card", card.ID)
+		viper.Set("card", card.ID)
 		fmt.Printf("Created card %v: %v: %v\n", card.ID, card.Name, card.Desc)
 		if Head {
 			err = card.MoveToTopOfList()
