@@ -26,6 +26,11 @@ function controlc
   printf "\x03"
 }
 
+function control_l
+{
+  printf "\x0c"
+}
+
 function return
 {
   printf "\x0d"
@@ -36,6 +41,7 @@ function formfeed
   printf "\x0c"
 }
 
+control_l
 sleep 1
 typer "trelldo version 2>/dev/null"
 enter
