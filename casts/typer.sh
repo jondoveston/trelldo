@@ -41,7 +41,6 @@ function formfeed
   printf "\x0c"
 }
 
-control_l
 sleep 1
 typer "trelldo version 2>/dev/null"
 enter

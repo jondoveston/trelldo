@@ -1,6 +1,6 @@
 module github.com/jondoveston/trelldo
 
-go 1.18
+go 1.19
 
 require (
 	github.com/adlio/trello v1.9.0

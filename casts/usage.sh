@@ -1,7 +1,6 @@
 #!/bin/bash
 source typer.sh
 
-
 typer 'alias trhead="trelldo get card -b Work -l Stack --head 2>/dev/null"'
 enter
 sleep 2

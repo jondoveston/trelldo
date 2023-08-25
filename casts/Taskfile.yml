@@ -1,0 +1,74 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  WIDTH: 80
+  HEIGHT: 24
+  CMD: "asciinema rec --cols {{ .WIDTH }} --rows {{ .HEIGHT }} --stdin --overwrite"
+  SVG: "docker run --rm -i bric3/svg-term-cli svg-term --width {{ .WIDTH }} --height {{ .HEIGHT }}"
+  GIF: "agg --theme solarized-dark --cols {{ .WIDTH }} --rows {{ .HEIGHT }}"
+  CASTS: "usage"
+
+tasks:
+  default:
+    cmds:
+      - for: { var: CASTS }
+        task: _mp4
+        vars:
+          CAST: "{{ .ITEM }}"
+
+  _cast:
+    internal: true
+    cmd: "bash {{ .CAST }}.sh | {{ .CMD }} -t 'Interview: {{ .CAST }}' {{ .CAST }}.cast"
+    sources:
+      - ./{{ .CAST }}.sh
+      - ./typer.sh
+    generates:
+      - ./{{ .CAST }}.cast
+
+  _gif:
+    internal: true
+    cmds:
+      - task: _cast
+        vars:
+          CAST: "{{ .CAST }}"
+      - "{{ .GIF }} {{ .CAST }}.cast {{ .CAST }}.gif"
+    sources:
+      - ./{{ .CAST }}.cast
+    generates:
+      - ./{{ .CAST }}.gif
+
+  _svg:
+    internal: true
+    cmds:
+      - task: _cast
+        vars:
+          CAST: "{{ .CAST }}"
+      - "{{ .SVG }} < {{ .CAST }}.cast > {{ .CAST }}.svg"
+    sources:
+      - ./{{ .CAST }}.cast
+    generates:
+      - ./{{ .CAST }}.svg
+
+  _mp4:
+    internal: true
+    cmds:
+      - task: _cast
+        vars:
+          CAST: "{{ .CAST }}"
+      - task: _gif
+        vars:
+          CAST: "{{ .CAST }}"
+      - "ffmpeg -y -i {{ .CAST }}.gif -movflags faststart -pix_fmt yuv420p -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' {{ .CAST }}.mp4"
+    sources:
+      - ./{{ .CAST }}.gif
+    generates:
+      - ./{{ .CAST }}.mp4
+
+  clean:
+    cmds:
+      - rm -f *.cast
+      - rm -f *.svg
+      - rm -f *.gif
+      - rm -f *.mp4
